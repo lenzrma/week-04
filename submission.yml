@@ -30,7 +30,7 @@ checker:
   total: 37
   commit: "063927d"
   kept_fails:
-    - "SQ4"
+  "SQ4"
 assumptions:
   overlap_touching_bookings: "not-allowed"
   blocking_a_booked_room: "cancel-bookings"

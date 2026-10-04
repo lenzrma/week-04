@@ -24,13 +24,13 @@ counts:
   use_cases: 6
   change_log_rows: 3
 checker:
-  pass: 32
-  fail: 5
+  pass: 33
+  fail: 4
   error: 0
   total: 37
-  commit: "063927d"
+  commit: "b25b417"
   kept_fails:
-  -"SQ4"
+    - "SQ4"
 assumptions:
   overlap_touching_bookings: "not-allowed"
   blocking_a_booked_room: "cancel-bookings"

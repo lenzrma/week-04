@@ -1,0 +1,35 @@
+@startuml
+autonumber
+skinparam BoxPadding 10
+skinparam ParticipantPadding 10
+
+actor Student as "Student"
+participant "BookingService" as Service
+participant "BookingRepository" as Repo
+
+Student -> Service: requestBooking(roomId, timeSlot)
+activate Service
+
+Service -> Service: validateRules(timeSlot)
+note right: **R1 Validation:**\n- Future start time\n- Duration > 0 and <= 2 hours
+
+Service -> Repo: checkRoomAvailability(roomId, timeSlot)
+activate Repo
+note right: **R2 & R3 Checks:**\n- Checks if room is blocked (R3)\n- Checks for overlapping active bookings (R2)
+Repo --> Service: availabilityStatus (isFree, isNotBlocked)
+deactivate Repo
+
+alt Room is free, not blocked, and rules pass (R1, R2, R3 valid)
+    Service -> Repo: saveBooking(booking)
+    activate Repo
+    Repo --> Service: bookingSaved
+    deactivate Repo
+
+    Service --> Student: bookingConfirmation
+    note left: **R4:** Successful booking\nproduces a confirmation
+else Validation fails, room is blocked (R3), or time slot overlaps (R2)
+    Service --> Student: bookingRejected (Error Reason)
+end
+
+deactivate Service
+@enduml

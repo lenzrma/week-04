@@ -1,0 +1,58 @@
+@startuml
+left to right direction
+skinparam classAttributeIconSize 0
+
+class Student {
+    - studentId: String
+    - name: String
+    + viewAvailability(timeSlot: TimeSlot): List<Room>
+    + bookRoom(room: Room, timeSlot: TimeSlot): Booking
+    + cancelBooking(booking: Booking): void
+}
+
+class Administrator {
+    - adminId: String
+    - name: String
+    + blockRoom(room: Room): void
+    + unblockRoom(room: Room): void
+    + reviewUsage(): UsageReport
+}
+
+class Room {
+    - roomId: String
+    - roomNumber: String
+    - isBlocked: boolean
+    + isAvailable(timeSlot: TimeSlot): boolean
+    + setBlocked(blocked: boolean): void
+}
+
+class Booking {
+    - bookingId: String
+    - startTime: DateTime
+    - endTime: DateTime
+    - status: BookingStatus
+    + confirm(): Confirmation
+    + cancel(): void
+}
+
+class Confirmation {
+    - confirmationId: String
+    - issuedAt: DateTime
+    + print(): void
+}
+
+Student "1" --> "0..*" Booking : makes >
+Room "1" --> "0..*" Booking : has >
+Administrator "1" --> "0..*" Room : manages / blocks >
+
+Booking "1" --> "1" Confirmation : produces >
+
+note bottom of Booking
+  **Business Rules Enforcement:**
+  - **R1:** duration > 0 and <= 2 hours, future start.
+  - **R2:** Active bookings for the same room cannot overlap.
+  - **R3:** A blocked room cannot accept a new booking.
+  - **R4:** A successful booking produces a confirmation.
+end note
+
+@enduml

@@ -35,10 +35,10 @@ assumptions:
   overlap_touching_bookings: "not-allowed"
   blocking_a_booked_room: "cancel-bookings"
 review_findings:
-  - "AI placed actors inside the system boundary in the initial use-case diagram."
-  - "Class diagram missed explicit duration and status attributes for bookings."
-  - "Sequence diagram incorrectly attempted to save records on validation failure."
+- "AI placed actors inside the system boundary in the initial use-case diagram."
+- "Class diagram missed explicit duration and status attributes for bookings."
+- "Sequence diagram incorrectly attempted to save records on validation failure."
 honesty:
   originals_unedited: "yes"
   can_explain_everything_submitted: "yes"
-  ai_usage_disclosed: "yes"
+  ai_usage_disclosed: "yes"ы

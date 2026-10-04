@@ -27,24 +27,28 @@ AI's first replies are saved as files in `models/original/` — do not paste the
 
 ### 2.1 Task 1 — use-case prompt
 
+```text
 Using the supplied scenario and approved stories, generate PlantUML for a use-case diagram. Include Student and Administrator outside a named system boundary. Model their goals, show justified associations, and list assumptions. Use include or extend only with a clear reason.
+```
 
 ### 2.2 Task 2 — class prompt
-
+```text
 Create a UML domain class diagram in PlantUML for Smart Campus. Start with Student, Room, and Booking. Add attributes, appropriate operations, and association multiplicities. Add other classes only when requirements justify them. Explain each relationship and list assumptions. Avoid unjustified inheritance or composition.
+```
 
 ### 2.3 Task 3 — behaviour prompt (3A sequence or 3B activity)
-
+```text
 Generate PlantUML for Book room. Use Student, BookingService, and BookingRepository lifelines. Validate the supplied rules, then attempt the reservation. Show a successful confirmation and an unavailable-room alternative using alt. Label messages and replies. Explain new design components and all assumptions.
+```
 
 ### 2.4 Focused correction prompts (if you sent any)
-
+```texе
 NONE!
-
+```
 ### 2.5 Critique prompt
-
+```text
 Review the use-case, class, and sequence models for Smart Campus against the scenarios, rules R1-R4, and UML best practices. List structural or logical flaws, missing relationships, or rule violations, and provide concrete recommendations for improvement.
-
+```
 
 
 ## 3. Task 1 — use-case review
@@ -155,7 +159,7 @@ At least **three** rows, and at least one for each required diagram (use case, c
 behaviour diagram). "Before" is what the AI produced; "After" is what you submitted.
 | # | Diagram | Before (AI's original) | After (your revision) | Reason |
 | --- | --- | --- | --- | --- |
-| 1 | Use-case | Actors placed inside system boundary and confirmation connected directly to student | Actors placed outside boundary; confirmation linked via <<include>> from booking | UML standard compliance and rule R4 adherence |
+| 1 | Use case | Actors placed inside system boundary and confirmation connected directly to student | Actors placed outside boundary; confirmation linked via <<include>> from booking | UML standard compliance and rule R4 adherence |
 | 2 | Class | Missing `isBlocked` attribute in Room and tracking attributes in Booking | Added `isBlocked: boolean` and core fields (`startTime`, `endTime`, `status`) | Required to enforce rules R1, R2, and R3 |
 | 3 | Sequence | Failure branch (`else`) incorrectly executed `saveBooking` | Failure branch returns `reject` directly without saving | Correcting logic flow so failed reservations are not persisted (SQ4) |
 

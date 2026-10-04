@@ -146,6 +146,7 @@ diagram**, spelled exactly as in the diagram, with the story ID it traces to.
 | US-04 | Block / unblock room | Administrator, Room | `setBlocked()` method |
 | US-05 | Block / unblock room | Administrator, Room | `blockRoom()` / `unblockRoom()` |
 | US-06 | Review usage | Administrator, Room | `reviewUsage()` method |
+| Produce confirmation | Produce confirmation | Confirmation | `bookingConfirmation` |
 
 
 
